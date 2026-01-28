@@ -38,4 +38,12 @@ public class ReviewEntity implements Serializable {
     public void setReview(String review) {
         this.review = review;
     }
+
+    public BookEntity getBook() {
+        return book;
+    }
+
+    public void setBook(BookEntity book) {
+        this.book = book;
+    }
 }
