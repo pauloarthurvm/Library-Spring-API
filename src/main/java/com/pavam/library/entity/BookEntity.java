@@ -3,6 +3,7 @@ package com.pavam.library.entity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "BOOKS")
@@ -19,6 +20,13 @@ public class BookEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "publisher_id")
     private PublisherEntity publisher;
+
+    @ManyToMany
+    @JoinTable(
+            name = "BOOKS_AUTHORS",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private Set<AuthorEntity> authors;
 
     public void setId(Long id) {
         this.id = id;
@@ -42,5 +50,13 @@ public class BookEntity implements Serializable {
 
     public void setPublisher(PublisherEntity publisher) {
         this.publisher = publisher;
+    }
+
+    public Set<AuthorEntity> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<AuthorEntity> authors) {
+        this.authors = authors;
     }
 }
