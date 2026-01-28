@@ -28,6 +28,9 @@ public class BookEntity implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<AuthorEntity> authors;
 
+    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
+    private ReviewEntity review;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -58,5 +61,13 @@ public class BookEntity implements Serializable {
 
     public void setAuthors(Set<AuthorEntity> authors) {
         this.authors = authors;
+    }
+
+    public ReviewEntity getReview() {
+        return review;
+    }
+
+    public void setReview(ReviewEntity review) {
+        this.review = review;
     }
 }

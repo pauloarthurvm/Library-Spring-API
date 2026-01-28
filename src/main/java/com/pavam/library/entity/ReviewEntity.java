@@ -1,5 +1,6 @@
 package com.pavam.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -16,6 +17,11 @@ public class ReviewEntity implements Serializable {
 
     @Column(nullable = false)
     private String review;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToOne
+    @JoinColumn(name = "book_id")
+    private BookEntity book;
 
     public Long getId() {
         return id;
