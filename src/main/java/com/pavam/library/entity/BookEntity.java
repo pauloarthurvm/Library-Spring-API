@@ -16,6 +16,10 @@ public class BookEntity implements Serializable {
     @Column(nullable = false, unique = true)
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private PublisherEntity publisher;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -30,5 +34,13 @@ public class BookEntity implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public PublisherEntity getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(PublisherEntity publisher) {
+        this.publisher = publisher;
     }
 }

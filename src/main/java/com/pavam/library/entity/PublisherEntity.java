@@ -1,8 +1,11 @@
 package com.pavam.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "PUBLISHERS")
@@ -16,6 +19,10 @@ public class PublisherEntity implements Serializable {
 
     @Column(nullable = false, unique = true)
     private String name;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "publisher")
+    private Set<BookEntity> books = new HashSet<>();
 
     public void setId(Long id) {
         this.id = id;
